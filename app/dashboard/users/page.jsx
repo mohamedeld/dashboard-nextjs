@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/dashboard/pagination/pagination";
 import { fetchUsers } from "@/lib/data";
+import { deleteUser } from "@/lib/actions";
 export default async function UsersPage({searchParams}) {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
@@ -50,14 +51,17 @@ export default async function UsersPage({searchParams}) {
                 <td>{user.isActive ? 'Active' : 'Not Active'}</td>
                 <td>
                   <div className={styles.buttons}>
-                    <Link href={`/users/${user._id}`}>
+                    <Link href={`/dashboard/users/${user._id}`}>
                       <button className={`${styles.button} ${styles.view}`}>
                         View
                       </button>
                     </Link>
-                    <button className={`${styles.button} ${styles.delete}`}>
-                      Delete
-                    </button>
+                    <form action={deleteUser}>
+                      <input type="hidden" name="id" value={user.id}/>
+                      <button className={`${styles.button} ${styles.delete}`}>
+                        Delete
+                      </button>
+                    </form>
                   </div>
                 </td>
               </tr>

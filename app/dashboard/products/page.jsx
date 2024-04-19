@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 import styles from "@/components/dashboard/products/products.module.css"
 import { fetchProducts } from '@/lib/data'
+import { deleteProduct } from '@/lib/actions'
 export default async function ProductsPage({searchParams}) {
   const q = searchParams?.q || '';
   const page = searchParams?.page || 1;
@@ -58,8 +59,8 @@ export default async function ProductsPage({searchParams}) {
                       View
                     </button>
                   </Link>
-                  <form action={""}>
-                    <input type="hidden" name="id"  />
+                  <form action={deleteProduct}>
+                    <input type="hidden" name="id" value={product.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
