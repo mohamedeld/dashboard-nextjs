@@ -17,7 +17,7 @@ export default function DashboardPage() {
         <Chart />
       </div>
       <div className={styles.side}>
-        <Rightbar />
+        <Rightbar  />
       </div>
     </div>
   );
